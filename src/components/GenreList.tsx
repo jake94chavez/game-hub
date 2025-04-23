@@ -27,7 +27,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
           <ListItem key={genre.id} paddingY="2px">
             <HStack
               backgroundColor={
-                genre == selectedGenre ? "gray.500" : "transparent"
+                genre.id == selectedGenre?.id ? "gray.500" : "transparent"
               }
               borderRadius={8}
               padding="6px"
