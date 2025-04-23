@@ -40,7 +40,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
               {genre.name}
               <Button
                 onClick={() =>
-                  genre == selectedGenre
+                  genre.id == selectedGenre?.id
                     ? onSelectGenre(null)
                     : onSelectGenre(genre)
                 }
@@ -48,6 +48,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                 variant="link"
                 whiteSpace="normal"
                 textAlign="left"
+                fontWeight={genre.id == selectedGenre?.id ? "700" : "normal"}
               >
                 {genre.name}
               </Button>
