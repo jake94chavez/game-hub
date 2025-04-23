@@ -22,37 +22,38 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
             <GenreItemSkeleton />
           </ListItem>
         ))}
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY="8px">
-          <HStack
-            backgroundColor={
-              genre == selectedGenre ? "gray.500" : "transparent"
-            }
-            borderRadius={8}
-            padding="6px"
-          >
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-            />
-            {genre.name}
-            <Button
-              onClick={() =>
-                genre == selectedGenre
-                  ? onSelectGenre(null)
-                  : onSelectGenre(genre)
+      {!isLoading &&
+        data.map((genre) => (
+          <ListItem key={genre.id} paddingY="2px">
+            <HStack
+              backgroundColor={
+                genre == selectedGenre ? "gray.500" : "transparent"
               }
-              fontSize="lg"
-              variant="link"
-              whiteSpace="normal"
-              textAlign="left"
+              borderRadius={8}
+              padding="6px"
             >
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                src={getCroppedImageUrl(genre.image_background)}
+              />
               {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
+              <Button
+                onClick={() =>
+                  genre == selectedGenre
+                    ? onSelectGenre(null)
+                    : onSelectGenre(genre)
+                }
+                fontSize="lg"
+                variant="link"
+                whiteSpace="normal"
+                textAlign="left"
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
     </List>
   );
 };
