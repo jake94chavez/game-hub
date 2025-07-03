@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   Heading,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import GenreItemSkeleton from "./GenreItemSkeleton";
 
@@ -18,6 +19,8 @@ interface GenreListProps {
 const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
   const { data, isLoading, error } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const textColor = useColorModeValue("black", "white");
+  const bgColor = useColorModeValue("gray.100", "gray.500");
 
   if (error) return null;
 
@@ -38,7 +41,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
             <ListItem key={genre.id} paddingY="2px">
               <HStack
                 backgroundColor={
-                  genre.id == selectedGenre?.id ? "gray.500" : "transparent"
+                  genre.id == selectedGenre?.id ? bgColor : "transparent"
                 }
                 borderRadius={8}
                 padding="6px"
@@ -56,6 +59,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                       ? onSelectGenre(null)
                       : onSelectGenre(genre)
                   }
+                  color={textColor}
                   fontSize="lg"
                   variant="link"
                   whiteSpace="normal"
